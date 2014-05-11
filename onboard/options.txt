@@ -1,0 +1,12 @@
+--hire-full-name
+Alfred Perlstein
+--hire-extern-email
+alfred@.org
+--redmine-api-url
+http://redmine.yourcompany.com
+--redmine-hiring-manager
+ap
+--redmine-http-auth-user
+0000your_redmine_api_key_here00000000000
+--redmine-http-auth-pass
+alfred
