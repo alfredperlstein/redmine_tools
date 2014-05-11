@@ -1,0 +1,13 @@
+These are a set of scripts I use for onboarding new hires at Norse.
+
+- onboard:
+  onboard.py - script to onboard people, has logic flow for new tickets.
+  options.txt - sample options for onboard.py, edit this file to configure.
+  redmine_rest.py - module used by onboard.py to talk to redmine via REST.
+
+
+  to run:
+  # edit options.txt to match your environment.
+  # edit onboard.py to match your onboarding workflow.
+  # then run the script:
+  python onboard.py @options.txt
