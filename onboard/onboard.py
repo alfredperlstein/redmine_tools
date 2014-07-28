@@ -57,7 +57,7 @@ def do_config():
     parser.add_argument("--redmine-watchers",
 			help="who else to watch the tickets")
     parser.add_argument("--all-tickets-to-manager", action="store_true",
-	    default=True,
+	    default=False,
 			help="send ALL tickets to manager")
     parser.add_argument("--config-file",
 			help="specify config file")
