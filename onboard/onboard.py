@@ -120,6 +120,7 @@ due_date_str = (datetime.datetime.now() +
 issue_template = {
         "project_id" : proj_id,
         "assigned_to_id" : user_id,
+        "assigned_to_username" : hiring_manager,
         "tracker_id": support_id,
         "subject": "Onboarding %s" % new_user_name,
         "description": "This is the main ticket to onboard %s" % new_user_name,
@@ -144,7 +145,8 @@ print "Posting sub issues..."
 issue_template["parent_issue_id"] = main_issue_id
 
 # Alfred Tickets
-issue_template["assigned_to_id"] = rm.get_user_id_by_name(alfred_account)
+issue_template["assigned_to_username"] = alfred_account
+issue_template["assigned_to_id"] = rm.get_user_id_by_name(issue_template["assigned_to_username"])
 rm.post_ticket(user=new_user_name, subject="get ssh pub key",
     payload=payload)
 rm.post_ticket(user=new_user_name, subject="build1 login",
@@ -153,17 +155,22 @@ rm.post_ticket(user=new_user_name, subject="build1 add to 'dev' unix group",
     payload=payload)
 rm.post_ticket(user=new_user_name, subject="build2 login",
     payload=payload)
+rm.post_ticket(user=new_user_name, subject="build3 login",
+    payload=payload)
 rm.post_ticket(user=new_user_name, subject="redmine login",
     payload=payload)
 rm.post_ticket(user=new_user_name,
     subject="add redmine user to 'appliance' group", payload=payload)
+rm.post_ticket(user=new_user_name,
+    subject="add redmine user to 'ops' group", payload=payload)
 rm.post_ticket(user=new_user_name,
     subject="add username/email to committers.lst",
     body="Add username and email to build:/freenas-build/freenas.git/hooks/committers.lst",
     payload=payload)
 
 # Hil tickets
-issue_template["assigned_to_id"] = rm.get_user_id_by_name(hil_account)
+issue_template["assigned_to_username"] = hil_account
+issue_template["assigned_to_id"] = rm.get_user_id_by_name(issue_template["assigned_to_username"])
 rm.post_ticket(user=new_user_name,
     subject="buy hardware",
     body="""1 macbook pro 16GB memory
@@ -180,7 +187,8 @@ rm.post_ticket(user=new_user_name,
     body="outside email is: %s" % new_user_extern_email, payload=payload)
 
 # Tom tickets
-issue_template["assigned_to_id"] = rm.get_user_id_by_name(tom_account)
+issue_template["assigned_to_username"] = tom_account
+issue_template["assigned_to_id"] = rm.get_user_id_by_name(issue_template["assigned_to_username"])
 rm.post_ticket(user=new_user_name,
     subject="create vpn keys",
     body="", payload=payload)

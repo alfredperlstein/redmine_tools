@@ -39,7 +39,7 @@ class ticket_poster:
 		    return user["id"]
 	    raise KeyError("no such user %s" % user_name)
 	except Exception as e:
-	    print "Exception: %s -> %s" % (url, r.text)
+	    print "Exception: %s code: %d text: '%s'" % (url, r.status_code, r.text)
         raise e
 
     def get_tracker_id_by_name(self, tracker_name):
@@ -67,7 +67,7 @@ class ticket_poster:
 	    r = requests.post(self.base_url + '/issues.json',
 		auth=self.auth, headers=headers, data=json.dumps(payload))
 	    the_id = r.json()["issue"]["id"]
-	    print "Ticket %d created: %s" % (the_id, self.ticket_url(the_id))
+	    print "Ticket %d created: %s owner: %s subj: %s:" % (the_id, self.ticket_url(the_id), payload["issue"]["assigned_to_username"], subject )
 	except Exception as e:
 	    try:
 		print "result code: %d -> %s" % (r.status_code, r.text)
